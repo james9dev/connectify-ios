@@ -19,7 +19,11 @@ struct ConnectifyApp: App {
     }
     
     init() {
-        KakaoSDK.initSDK(appKey: "7679e7aa12244fcb43dea87527325767")
+		
+		let kakaoAppKey = Bundle.main.object(forInfoDictionaryKey: "KakaoAppKeyTest") as? String ?? ""
+		
+		KakaoSDK.initSDK(appKey: kakaoAppKey)
+		
     }
     
     var body: some Scene {
