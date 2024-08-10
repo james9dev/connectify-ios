@@ -20,9 +20,12 @@ struct ConnectifyApp: App {
     
     init() {
 		
+//		let kakaoAppKey = Bundle.main.object(forInfoDictionaryKey: "KakaoAppKey") as? String ?? ""
 		let kakaoAppKey = Bundle.main.object(forInfoDictionaryKey: "KakaoAppKeyTest") as? String ?? ""
 		
 		KakaoSDK.initSDK(appKey: kakaoAppKey)
+		
+		ConnectifyApp.store.send(.autoSignin)
 		
     }
     

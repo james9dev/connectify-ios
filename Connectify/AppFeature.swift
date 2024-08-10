@@ -27,6 +27,7 @@ struct AppFeature {
         case signA(SignCoordinator.Action)
         case mainA(MainCoordinator.Action)
         
+		case autoSignin
         case signout
     }    
     
@@ -43,27 +44,34 @@ struct AppFeature {
         Reduce<State, Action> { state, action in
             
             switch action {
-            case .signA(.router(.routeAction(_, .signView(.signinButtonTapped)))):
-                break
-            case .signA(.router(.routeAction(_, .signView(.signnedIn(let signned))))):
-                
-                state.isSignnedIn = signned
-                
-                break
-            case .mainA(.signout):
-                
-                state.isSignnedIn = false
+            case .signA(.router(.routeAction(_, .signView(.signnedIn(let authToken))))):
+				
+				KeychainHelper.create(value: authToken.accessToken, label: "auth_access_token")
+				KeychainHelper.create(value: authToken.refreshToken, label: "auth_refresh_token")
+				
+				state.mainS.selectedTab = authToken.authType == .SignUp ? .tab4 : .tab1
+				state.isSignnedIn = true
                 
                 break
             case .signout:
+				
+				KeychainHelper.delete(label: "auth_access_token")
+				KeychainHelper.delete(label: "auth_refresh_token")
                 
                 state.mainS = .initialState
                 state.isSignnedIn = false
                 
                 break
+				
+			case .autoSignin:
+				
+				if KeychainHelper.read(label: "auth_access_token") != nil {
+					state.isSignnedIn = true
+				}
+				
+				break
             default:
-                break
-            
+				break
             }
             
             return .none

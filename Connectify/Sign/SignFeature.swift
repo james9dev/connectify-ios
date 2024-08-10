@@ -19,24 +19,29 @@ struct SignFeature {
         let id = UUID()
         var username: String = "ID"
         var password: String = "pw"
+		
+		var signFailAlert: Bool = false
+		var signFailMessage: String = ""
+		
         var isLoggedIn: Bool = false
     }
 
     // Action
     enum Action: BindableAction {
-        case signinButtonTapped
         case kakaoButtonTapped
-        
-        case signoutButtonTapped
-        
-        case signnedIn(Bool)
-                
+		case signoutButtonTapped
+        case signnedIn(AuthTokenDto)
+		case signnedFail(String)
+		
         case binding(BindingAction<State>)
     }
+	
 
     // Environment
 //    struct LoginEnvironment {}
 
+	@Dependency(\.signClient) var client // <- here
+	
     // Reducer
     var body: some ReducerOf<Self> {
     
@@ -44,63 +49,40 @@ struct SignFeature {
         
         Reduce { state, action in
             switch action {
-            case .signinButtonTapped:
-                if state.username == "ID" && state.password == "pw" {
-                    state.isLoggedIn = true
-                    
-                }
-                return .run { [isLoggedIn = state.isLoggedIn] send in
-                    
-                    if isLoggedIn == true {
-                        
-                        let (data, _) = try await URLSession.shared.data(from: URL(string: "http://numbersapi.com/\(0)")!)
-                        
-                        let _ = String(decoding: data, as: UTF8.self)
-                        
-                        await send(.signnedIn(true))
-                    }
-                    
-                  }
-            case .signnedIn:
-                
-                return .none
-            case .kakaoButtonTapped:
-                
-                return .run { send in
-                    
-                    if UserApi.isKakaoTalkLoginAvailable() {
-                        
-						UserApi.shared.loginWithKakaoTalk { (oauthToken, error) in
-                            if let error = error {
-                                print(error)
-                            } else {
-								print("loginWithKakaoTalk() success: \(oauthToken)")
-
-                                //do something
-                                _ = oauthToken
-                            }
-                        }
-						
-					} else {
-						
-						UserApi.shared.loginWithKakaoAccount { oauthToken, error in
-							if let error = error {
-								print("yjk - loginWithKakaoAccount error: \(error.localizedDescription)")
-								return
-							}
-							
-							if let accessToken = oauthToken?.accessToken {
-								print("yjk -  loginWithKakaoAccount() success: \(accessToken)")
+				
+			case .kakaoButtonTapped:
 								
-							}
+				return .run { send in
+					
+					let kakaoResult = try await client.loginWithKakaoTalk()
+					
+					if let error = kakaoResult.error {
+						await send(.signnedFail(error.localizedDescription))
+						return
+					}
+							
+					if let kakaoToken = kakaoResult.accessToken {
+						let result = try await client.signWithKakao(kakaoToken)
+						
+						if result.success(), let authToken = result.data, !authToken.accessToken.isEmpty {							
+							await send(.signnedIn(authToken))
+						} else {
+							await send(.signnedFail(result.message))
 						}
 					}
-                    
-                }
-            case .signoutButtonTapped:
-                state.isLoggedIn = false
+				}
+				
+			case .signoutButtonTapped:
+				state.isLoggedIn = false				
+				return .none
+            case .signnedIn(_):
                 return .none
-                
+			case .signnedFail(let message):
+				
+				state.signFailMessage = message
+				state.signFailAlert = true
+				
+				return .none
             case .binding(\.username):
                 print("username", state.username)
                 return .none
@@ -114,5 +96,4 @@ struct SignFeature {
             }
         }
     }
-    
 }

@@ -75,7 +75,6 @@ struct MainCoordinator {
     enum Action {
         //case deeplinkOpened(Deeplink)
 		case profile(AccountCoordinator.Action)
-		case signout
 		case tabSelected(Tab)
 	}
 	
