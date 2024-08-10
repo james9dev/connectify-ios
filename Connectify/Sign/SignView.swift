@@ -18,8 +18,9 @@ struct SignView: View {
     var body: some View {
         
         ZStack {
+			
             LinearGradient(gradient: Gradient(colors: [Color(uiColor: UIColor(red:1.000, green:0.271, blue:0.227, alpha:1.00)), Color.init(uiColor: UIColor(red: 0.993, green: 0.182, blue: 0.472, alpha: 1.0))]), startPoint: .top, endPoint: .bottom)
-        
+			
             VStack {
                 /*
                 TextField("Username", text: $store.username)
@@ -43,30 +44,79 @@ struct SignView: View {
                         .background(Color.blue)
                         .cornerRadius(15.0)
                 }*/
+				
+				Spacer().frame(height: 80)
+				
+				HStack {
+					Spacer()
+					Image("sample_sign_02")
+						.resizable()
+						.scaledToFill()
+						.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+						.frame(width: 60, height: 60)
+					Spacer().frame(width: 30)
+				}
+				
+				Image("sample_sign_01")
+					.resizable()
+					.scaledToFill()
+					.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+					.frame(width: 100, height: 100)
+				
+				HStack {
+					Spacer().frame(width: 30)
+					Image("sample_sign_03")
+						.resizable()
+						.scaledToFill()
+						.clipShape(Circle())
+						.frame(width: 70, height: 70)
+					Spacer()
+				}
+				
+				HStack {
+					Spacer()
+					Image("sample_sign_04")
+						.resizable()
+						.scaledToFill()
+						.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+						.frame(width: 60, height: 60)
+					Spacer().frame(width: 80)
+				}
+				
                 
-                Spacer()
-                
-                Text("Find your\nPerfect Love!")
-                    .font(Font.system(size: 50, weight: .bold))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.trailing)
-                    .padding(.bottom, 20)
+                Spacer()				
+				
+				HStack {
+					Spacer()
+					Text("Find your Perfect Love!")
+						.font(.system(size: 22, weight: .regular))
+						.foregroundColor(.white)
+						.multilineTextAlignment(.trailing)
+						.padding(.bottom, 10)
+				}
+				
+				HStack {
+					Spacer()
+					Text("Don't quit.\nStay here as a couple!")
+						.font(.system(size: 44, weight: .bold))
+						.minimumScaleFactor(0.1)
+						.lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+						.foregroundColor(.white)
+						.multilineTextAlignment(.trailing)
+						.padding(.bottom, 20)
+				}
                 
                 Button(action: {
                     store.send(.kakaoButtonTapped)
                 }) {
                     
                     Image("kakao_login_medium_narrow")
-                        .frame(width: 183, height: 45)
-                    
-//                    Text("With Kakao")
-//                        .font(.headline)
-//                        .foregroundColor(.white)
-//                        .padding()
-//                        .frame(width: 220, height: 60)
-//                        .background(Color.blue)
-//                        .cornerRadius(15.0)
-                }.padding(.bottom, 100)
+                        .frame(width: 183, height: 45)                    
+                }
+				.padding(.bottom, 80)
+				.alert(store.state.signFailMessage, isPresented: $store.state.signFailAlert) {
+					Button("OK", role: .cancel) { }
+				}
                 
             }
             .padding()
