@@ -7,13 +7,29 @@
 
 import SwiftUI
 import ComposableArchitecture
+import GoogleMobileAds
 
 struct ProfileView: View {
+	var width: CGFloat = UIScreen.main.bounds.width
+
+	var size: CGSize {
+		return GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width).size
+	}
     
     var store: StoreOf<ProfileFeature>
         
     var body: some View {
         VStack {
+			
+			HStack {
+				BannerView(adUnitID: store.state.adUnitID)
+					.frame(height: size.height)
+					.background(Color.red)
+			}
+
+			
+			Spacer()
+			
             Button(action: { store.send(.signoutButtonTapped) }) {
                 Text("Signout")
                     .font(.headline)

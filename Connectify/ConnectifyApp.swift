@@ -8,6 +8,9 @@
 import SwiftUI
 import ComposableArchitecture
 import KakaoSDKCommon
+import GoogleMobileAds
+import AppTrackingTransparency
+
 
 @main
 struct ConnectifyApp: App {
@@ -19,6 +22,9 @@ struct ConnectifyApp: App {
     }
     
     init() {
+		//GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "c458ae01182d2fad3701091c1e7991e0" ]
+		GADMobileAds.sharedInstance().start(completionHandler: nil)
+
 		
 //		let kakaoAppKey = Bundle.main.object(forInfoDictionaryKey: "KakaoAppKey") as? String ?? ""
 		let kakaoAppKey = Bundle.main.object(forInfoDictionaryKey: "KakaoAppKeyTest") as? String ?? ""
@@ -34,7 +40,11 @@ struct ConnectifyApp: App {
             //CounterView(store: ConnectifyApp.store)
             //SignView(store: ConnectifyApp.store)
             
-            AppView(store: ConnectifyApp.store)                
+			AppView(store: ConnectifyApp.store)
+				.onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+					ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
+					})
+			   }
             
 //            MainCoordinatorView(store: Store(initialState: MainCoordinator.State.initialState, reducer: {
 //                

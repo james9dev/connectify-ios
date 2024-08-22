@@ -19,6 +19,9 @@ struct ProfileFeature {
         static let initialState = State()
         
         let id = UUID()
+		
+		//let adUnitID = "ca-app-pub-1690789030518389/9124928662"
+		let adUnitID = "ca-app-pub-3940256099942544/2435281174" //Test용 id
     }
 
     enum Action {
