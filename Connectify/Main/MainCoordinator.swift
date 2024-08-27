@@ -16,15 +16,15 @@ struct MainCoordinatorView: View {
 		WithPerceptionTracking {
 			
 			TabView(selection: $store.selectedTab.sending(\.tabSelected)) {
-				HomeView()
-                    .tabItem {
+				HomeView(store: Store(initialState: HomeFeature.State()) { HomeFeature() })
+					.tabItem {
                         Image(systemName: "house.fill")
                         Text("Home")
                     }
 					.tag(MainCoordinator.Tab.tab1)
 
                 Text("Search")
-                    .tabItem {
+					.tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Search")
                     }
