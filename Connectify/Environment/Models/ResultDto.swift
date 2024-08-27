@@ -26,7 +26,7 @@ struct ResultDto<T: Codable>: Codable {
 struct ListDto<T: Codable>: Codable {
 	let size: Int
 	let total: Int
-	let data: [T]
+	let values: [T]
 }
 
 

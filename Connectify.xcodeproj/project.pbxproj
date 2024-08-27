@@ -34,6 +34,7 @@
 		1ABBB12A2C495D0F0077EBA9 /* ConnectifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBB1292C495D0F0077EBA9 /* ConnectifyUITestsLaunchTests.swift */; };
 		1ABBB1382C4967B10077EBA9 /* CounterFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBB1372C4967B10077EBA9 /* CounterFeature.swift */; };
 		1AC6B3BE2C7C7EC800AF5830 /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC6B3BD2C7C7EC800AF5830 /* HomeFeature.swift */; };
+		1AC6B3C02C7D89F500AF5830 /* HomeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC6B3BF2C7D89F500AF5830 /* HomeClient.swift */; };
 		1AD69E862C7E16F700E3EC67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1AD69E842C7E16F700E3EC67 /* Localizable.strings */; };
 		1AD69E8A2C7E194D00E3EC67 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD69E892C7E194D00E3EC67 /* Localized.swift */; };
 		1AD69E8C2C7E1EC100E3EC67 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD69E8B2C7E1EC100E3EC67 /* String+Ext.swift */; };
@@ -111,6 +112,7 @@
 		1ABBB1292C495D0F0077EBA9 /* ConnectifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1ABBB1372C4967B10077EBA9 /* CounterFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterFeature.swift; sourceTree = "<group>"; };
 		1AC6B3BD2C7C7EC800AF5830 /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
+		1AC6B3BF2C7D89F500AF5830 /* HomeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClient.swift; sourceTree = "<group>"; };
 		1AD69E852C7E16F700E3EC67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1AD69E872C7E16FB00E3EC67 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1AD69E892C7E194D00E3EC67 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				1A13E3252C67616800CAB6F7 /* HomeView.swift */,
 				1AC6B3BD2C7C7EC800AF5830 /* HomeFeature.swift */,
+				1AC6B3BF2C7D89F500AF5830 /* HomeClient.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				1AC6B3BE2C7C7EC800AF5830 /* HomeFeature.swift in Sources */,
 				1AF086F72C4E980D00CD7871 /* SignCoordinator.swift in Sources */,
 				1A14EC922C62A58B00095E93 /* KakaoAPI.swift in Sources */,
+				1AC6B3C02C7D89F500AF5830 /* HomeClient.swift in Sources */,
 				1AA2CC0D2C4BA96E00CD05AF /* ProfileView.swift in Sources */,
 				1A13E31E2C6740E600CAB6F7 /* Encodable+Ext.swift in Sources */,
 				1AF087112C5003E900CD7871 /* AccountScreen+Identifiable.swift in Sources */,

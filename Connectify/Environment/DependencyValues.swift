@@ -12,6 +12,11 @@ extension DependencyValues {
 		get { self[SignClient.self] }
 		set { self[SignClient.self] = newValue }
 	}
+	
+	var homeClient: HomeClient {
+		get { self[HomeClient.self] }
+		set { self[HomeClient.self] = newValue }
+	}
 }
 
 public protocol ConectifyDependencyKey: DependencyKey {
