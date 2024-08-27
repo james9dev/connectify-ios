@@ -33,6 +33,8 @@ struct ConnectifyApp: App {
 		
 		ConnectifyApp.store.send(.autoSignin)
 		
+		UITabBar.appearance().backgroundColor = UIColor.white
+		
     }
     
     var body: some Scene {
