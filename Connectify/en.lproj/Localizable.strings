@@ -1,0 +1,15 @@
+// App
+
+/* App name */
+app_name = "Connectify";
+
+/* Member profile */
+new_here = "New here";
+
+/* iOS system privacy - system alert */
+privacy_camera_usage_description = "Use to take photos for your profile, shows.";
+privacy_location_allways_and_when_in_use_usage_description = "We use your location to show your close or potential friends in the area.";
+privacy_location_when_in_use_usage_description = "We use your location to show your close or potential friends in the area.";
+privacy_microphone_usage_description = "Use to turn on the microphone for your Talk";
+privacy_photo_library_usage_description = "Use to take photos for your profile, shows.";
+privacy_tracking_usage_description = "Your data will be used to deliver personalized service to you.";
