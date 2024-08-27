@@ -11,6 +11,7 @@ import Alamofire
 enum APIUrl<String> {
 	
 	case main(String)
+	case file(String)
 	case sub(String)
 	
 		
@@ -20,6 +21,8 @@ enum APIUrl<String> {
 		switch self {
 		case .main(let path):
 			convertible = "http://localhost:8080\(path)"
+		case .file(let path):
+			convertible = "https://connectify-files-origin.s3.ap-northeast-2.amazonaws.com\(path)"
 		case .sub(_):
 			break
 		}

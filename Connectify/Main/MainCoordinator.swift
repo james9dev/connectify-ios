@@ -14,8 +14,9 @@ struct MainCoordinatorView: View {
     
 	var body: some View {
 		WithPerceptionTracking {
+			
 			TabView(selection: $store.selectedTab.sending(\.tabSelected)) {
-                Text("Home")
+				HomeView()
                     .tabItem {
                         Image(systemName: "house.fill")
                         Text("Home")
@@ -42,7 +43,9 @@ struct MainCoordinatorView: View {
                         Text("Profile")
                     }
 					.tag(MainCoordinator.Tab.tab4)
-            }
+			}
+			.accentColor(Color(red: 0.993, green: 0.182, blue: 0.472))
+			//.tabViewStyle(PageTabViewStyle())
         }
     }
 }

@@ -19,7 +19,7 @@ struct SignView: View {
         
         ZStack {
 			
-            LinearGradient(gradient: Gradient(colors: [Color(uiColor: UIColor(red:1.000, green:0.271, blue:0.227, alpha:1.00)), Color.init(uiColor: UIColor(red: 0.993, green: 0.182, blue: 0.472, alpha: 1.0))]), startPoint: .top, endPoint: .bottom)
+			LinearGradient(gradient: Gradient(colors: [Color(red:1.000, green:0.271, blue:0.227), Color(red: 0.993, green: 0.182, blue: 0.472)]), startPoint: .top, endPoint: .bottom)
 			
             VStack {
                 /*
@@ -49,7 +49,7 @@ struct SignView: View {
 				
 				HStack {
 					Spacer()
-					Image("sample_sign_02")
+					Image("sample_sign_1")
 						.resizable()
 						.scaledToFill()
 						.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
@@ -57,7 +57,7 @@ struct SignView: View {
 					Spacer().frame(width: 30)
 				}
 				
-				Image("sample_sign_01")
+				Image("sample_sign_0")
 					.resizable()
 					.scaledToFill()
 					.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
@@ -65,7 +65,7 @@ struct SignView: View {
 				
 				HStack {
 					Spacer().frame(width: 30)
-					Image("sample_sign_03")
+					Image("sample_sign_2")
 						.resizable()
 						.scaledToFill()
 						.clipShape(Circle())
@@ -75,7 +75,7 @@ struct SignView: View {
 				
 				HStack {
 					Spacer()
-					Image("sample_sign_04")
+					Image("sample_sign_3")
 						.resizable()
 						.scaledToFill()
 						.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
