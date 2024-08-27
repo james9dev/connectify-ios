@@ -43,7 +43,11 @@ struct APIClient<T: Codable> {
 			
 			let convertible = url.absoluteString
 			
-			let headers: HTTPHeaders? = headers ?? ["Content-Type":"application/json", "Accept":"*/*"]
+			var headers: HTTPHeaders? = headers ?? ["Content-Type":"application/json", "Accept":"*/*"]
+			
+			if let accessToken = KeychainHelper.read(label: "auth_access_token") {
+				headers?.add(name: "Authorization", value: "Bearer \(accessToken)")
+			}
 			
 			AF.request(convertible,
 					   method: method,
@@ -65,21 +69,39 @@ struct APIClient<T: Codable> {
 				
 				switch response.result {
 				case .success(let data):
-										
-					if let data, let result = try? JSONDecoder().decode(ResultDto<T>.self, from: data) {
+					
+					guard let data else {
+						let result = ResultDto<T>.init(resultCode: 500, message: "The response value data is empty.")
 						continuation.resume(returning: result)
-					} else {
-						let result = ResultDto<T>.init(resultCode: 499, message: "JSONDeocder error")
+						return
+					}
+					
+					do {
+						let result = try JSONDecoder().decode(ResultDto<T>.self, from: data)
 						continuation.resume(returning: result)
+					} catch {
+						print("API Response JSON decode error: \(error)")
+						let result = ResultDto<T>.init(resultCode: 499, message: error.localizedDescription)
+						continuation.resume(returning: result)
+						
 					}
 
 				case .failure(let error):
 					
-					if let data = response.data, let result = try? JSONDecoder().decode(ResultDto<T>.self, from: data) {
-						continuation.resume(returning: result)
-					} else  {
+					guard let data = response.data else {
 						let result = ResultDto<T>.init(resultCode: error.responseCode ?? 500, message: error.errorDescription ?? "")
 						continuation.resume(returning: result)
+						return
+					}
+					
+					do {
+						let result = try JSONDecoder().decode(ResultDto<T>.self, from: data)
+						continuation.resume(returning: result)
+					} catch {
+						print("API Response JSON decode error: \(error)")
+						let result = ResultDto<T>.init(resultCode: 499, message: error.localizedDescription)
+						continuation.resume(returning: result)
+						
 					}
 				}
 			}
