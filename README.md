@@ -6,9 +6,10 @@
 - 회원 추천, 매칭
 - 인앱 결제, 상품 구독
 
-![connectify_screenshot_001](https://github.com/user-attachments/assets/22c01118-f9b3-4326-9551-8f73c4fa23c1)
-![connectify_screenshot_002](https://github.com/user-attachments/assets/3318c0e7-8acf-420a-8887-c2b86492bc3a)
-![connectify_screenshot_003](https://github.com/user-attachments/assets/25b25cd9-886a-4c58-98ac-57fd89a7be64)
+![connectify_screenshot_001](https://github.com/user-attachments/assets/7eef8429-2974-4ccb-8790-c8e7f515c011)
+![connectify_screenshot_002](https://github.com/user-attachments/assets/da966cf3-e258-43ab-9203-d480eaa458b6)
+![connectify_screenshot_003](https://github.com/user-attachments/assets/1ddc9741-0cff-48be-86ca-e64d30040a72)
+
 
 ## Architecture
 - **SwiftUI와 TCA, TCACoordinators를 활용한 프로젝트**
