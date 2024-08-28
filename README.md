@@ -6,6 +6,10 @@
 - 회원 추천, 매칭
 - 인앱 결제, 상품 구독
 
+![connectify_screenshot_001](https://github.com/user-attachments/assets/22c01118-f9b3-4326-9551-8f73c4fa23c1)
+![connectify_screenshot_002](https://github.com/user-attachments/assets/3318c0e7-8acf-420a-8887-c2b86492bc3a)
+![connectify_screenshot_003](https://github.com/user-attachments/assets/25b25cd9-886a-4c58-98ac-57fd89a7be64)
+
 ## Architecture
 - **SwiftUI와 TCA, TCACoordinators를 활용한 프로젝트**
 - **[The Composable Architecture(TCA)](https://github.com/pointfreeco/swift-composable-architecture)**
