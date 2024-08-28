@@ -8,6 +8,49 @@
 import Foundation
 import Alamofire
 
+extension Bundle {
+	
+	var apiServer: String {
+		
+		var key = ""
+		
+		#if LOCAL
+		key = "API_URL_LOCAL"
+		#elseif DEBUG
+		key = "API_URL_DEBUG"
+		#else
+		key = "API_URL_RELEASE"
+		#endif
+		
+		return self.getValue(key: key)
+	}
+	
+	var s3Server: String {
+		
+		var key = ""
+		
+		#if LOCAL
+		key = "S3_URL_LOCAL"
+		#elseif DEBUG
+		key = "S3_URL_DEBUG"
+		#else
+		key = "S3_URL_RELEASE"
+		#endif
+		
+		return self.getValue(key: key)
+	}
+	
+	func getValue(key: String) -> String {
+		guard let filePath = self.path(forResource: "Info", ofType: "plist"),
+			  let plistDict = NSDictionary(contentsOfFile: filePath),
+			  let value = plistDict.object(forKey: key) as? String else {
+			return ""
+		}
+		
+		return value
+	}
+}
+
 enum APIUrl<String> {
 	
 	case main(String)
@@ -19,10 +62,10 @@ enum APIUrl<String> {
 		
 		var convertible = ""
 		switch self {
-		case .main(let path):
-			convertible = "http://localhost:8080\(path)"
+		case .main(let path): 
+			convertible = Bundle.main.apiServer + "\(path)"
 		case .file(let path):
-			convertible = "https://connectify-files-origin.s3.ap-northeast-2.amazonaws.com\(path)"
+			convertible = Bundle.main.s3Server + "\(path)"
 		case .sub(_):
 			break
 		}
