@@ -31,6 +31,7 @@ struct HomeFeature {
 		case introMemberTapped(_ member: Member)
 		
 		case likeButtonTapped
+		case messageButtonTapped
 		case passButtonTapped
 	}
 	
@@ -63,6 +64,9 @@ struct HomeFeature {
 			case .likeButtonTapped:
 				
 				break
+			case .messageButtonTapped:
+				
+				break				
 			case .passButtonTapped:
 				
 				break

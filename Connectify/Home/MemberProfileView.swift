@@ -15,11 +15,10 @@ struct MemberProfileView: View {
 	
     var body: some View {
 		
-		VStack {
-			ZStack {
+		VStack(spacing: 20) {
+			ZStack(alignment: .center) {
 				GeometryReader { proxy in
-					let imgUrl = (store.state.selectedMember?.profile?.pictures?.first?.imageUrl?.removingPercentEncoding ?? "")
-					KFImage(URL(string: imgUrl))
+					KFImage(URL(string: (store.state.selectedMember?.profile?.getPictureUrl(index: 0) ?? "")))
 						.resizable()
 						.scaledToFill()
 						.frame(width: proxy.size.width)
@@ -88,7 +87,6 @@ struct MemberProfileView: View {
 				}
 				
 				GeometryReader { proxy in
-					
 					Button(action: {
 						store.send(.likeButtonTapped)
 					}) {
@@ -102,8 +100,6 @@ struct MemberProfileView: View {
 					.background(Color.red)
 					.clipShape(Circle())
 					.position(CGPoint(x: proxy.size.width - 40, y: proxy.size.height - 40))
-					
-					
 				}
 				
 			} //end Z
@@ -111,35 +107,130 @@ struct MemberProfileView: View {
 			.cornerRadius(15)
 			.padding([.leading, .trailing], 10)
 			
-			Spacer().frame(height: 20)
 			
-			VStack(alignment: .leading, spacing: 4) {
-				if let text = store.state.selectedMember?.profile?.bio {
-												
-					HStack {
-						VStack(alignment: .leading, spacing: 15) {
-							Text("My bio").font(.title3).bold()
-							Text(text)
-						}
-						
-						Spacer()
+			if let text = store.state.selectedMember?.profile?.bio {
+				HStack {
+					VStack(alignment: .leading, spacing: 15) {
+						Text("My bio").font(.title3).bold()
+						Text(text)
 					}
 					.padding([.leading, .trailing], 15)
 					.padding([.top, .bottom], 30)
-					.background(Color.white)
-					.cornerRadius(10)
+					
+					Spacer()
 				}
-				
+				.background(Color.white)
+				.cornerRadius(10)
+				.padding([.leading, .trailing], 10)
 			}
+			
+			
+			if let imgUrl = store.state.selectedMember?.profile?.getPictureUrl(index: 1) {
+				VStack {
+					GeometryReader { proxy in
+						KFImage(URL(string: imgUrl))
+							.resizable()
+							.scaledToFill()
+							.frame(width: proxy.size.width)
+					}
+				}
+				.aspectRatio(0.75, contentMode: .fill)
+				.cornerRadius(15)
+				.padding([.leading, .trailing], 10)
+			}
+			
+			HStack {
+				FlexibleChipsView(verticalSpacing: 10, horizontalSpacing: 10, color: Color(red: 0.945, green: 0.945, blue: 0.945), items: [
+					.init(title: "🐕 Dogs"),
+					.init(title: "🎾 Tennis", priority: 1),
+					.init(title: "🍷 Wine", priority: 2),
+					.init(title: "☕️ Coffe", priority: 3),
+					.init(title: "🏕️ Camping", priority: 4),
+					.init(title: "✈️ Travel", priority: 5),
+					.init(title: "✍️ Creativity", priority: 6)
+				])
+				.padding([.leading, .trailing], 15)
+				.padding([.top, .bottom], 15)
+			}
+			.background(Color.white)
+			.cornerRadius(10)
 			.padding([.leading, .trailing], 10)
 			
+			if let imgUrl = store.state.selectedMember?.profile?.getPictureUrl(index: 2) {
+				VStack {
+					GeometryReader { proxy in
+						KFImage(URL(string: imgUrl))
+							.resizable()
+							.scaledToFill()
+							.frame(width: proxy.size.width)
+					}
+				}
+				.aspectRatio(0.75, contentMode: .fill)
+				.cornerRadius(15)
+				.padding([.leading, .trailing], 10)
+			}
+			
+			if let imgUrl = store.state.selectedMember?.profile?.getPictureUrl(index: 3) {
+				VStack {
+					GeometryReader { proxy in
+						KFImage(URL(string: imgUrl))
+							.resizable()
+							.scaledToFill()
+							.frame(width: proxy.size.width)
+					}
+				}
+				.aspectRatio(0.75, contentMode: .fill)
+				.cornerRadius(15)
+				.padding([.leading, .trailing], 10)
+			}
+			
+			HStack {
+				
+				Spacer()
+				
+				Button(action: {
+					store.send(.messageButtonTapped)
+				}) {
+					
+					Image("icon_love_letter")
+						.resizable()
+						.frame(width: 50, height: 50)
+						.aspectRatio(contentMode: .fit)
+						
+				}
+				.frame(width: 60, height: 60)
+				.background(Color.yellow)
+				.clipShape(Circle())
+				.shadow(radius: 10, x: 8, y: 8)
+				
+				Spacer().frame(width: 40)
+				
+				Button(action: {
+					store.send(.likeButtonTapped)
+				}) {
+					
+					Image("icon_like")
+						.aspectRatio(contentMode: .fit)
+						.frame(width: 60, height: 60)
+						
+				}
+				.frame(width: 60, height: 60)
+				.background(Color.red)
+				.clipShape(Circle())
+				.shadow(radius: 10, x: 8, y: 8)
+				
+				Spacer()
+			}
+			
 			Spacer().frame(height: 40)
-		}
+			
+			
+		} //end V
     }
 }
 
-#Preview {
-	MemberProfileView(store: Store(initialState: HomeFeature.State()) {
-		HomeFeature()
-	})
-}
+//#Preview {
+//	MemberProfileView(store: Store(initialState: HomeFeature.State()) {
+//		HomeFeature()
+//	})
+//}

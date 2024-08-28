@@ -68,6 +68,14 @@ struct Profile: Codable, Equatable {
 		
 	}
 	
+	func getPictureUrl(index: Int) -> String? {
+		if (pictures?.count ?? 0) > index {
+			return pictures?[index].imageUrl?.removingPercentEncoding
+		}
+		
+		return nil
+	}
+	
 }
 
 struct ProfilePicture: Codable, Equatable {
