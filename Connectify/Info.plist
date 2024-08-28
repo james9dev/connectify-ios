@@ -241,5 +241,17 @@
 			<string>3qcr597p9d.skadnetwork</string>
 		</dict>
 	</array>
+	<key>API_URL_LOCAL</key>
+	<string>${API_URL_LOCAL}</string>
+	<key>API_URL_DEBUG</key>
+	<string>${API_URL_DEBUG}</string>
+	<key>API_URL_RELEASE</key>
+	<string>${API_URL_RELEASE}</string>
+	<key>S3_URL_LOCAL</key>
+	<string>${S3_URL_LOCAL}</string>
+	<key>S3_URL_DEBUG</key>
+	<string>${S3_URL_DEBUG}</string>
+	<key>S3_URL_RELEASE</key>
+	<string>${S3_URL_RELEASE}</string>
 </dict>
 </plist>
