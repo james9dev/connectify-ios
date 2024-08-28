@@ -7,8 +7,9 @@
 - 인앱 결제, 상품 구독
 
 ![connectify_screenshot_001](https://github.com/user-attachments/assets/7eef8429-2974-4ccb-8790-c8e7f515c011)
-![connectify_screenshot_002](https://github.com/user-attachments/assets/da966cf3-e258-43ab-9203-d480eaa458b6)
-![connectify_screenshot_003](https://github.com/user-attachments/assets/1ddc9741-0cff-48be-86ca-e64d30040a72)
+![connectify_screenshot_002](https://github.com/user-attachments/assets/40f97048-f4c2-4fd5-8791-37011dd7734b)
+![connectify_screenshot_003](https://github.com/user-attachments/assets/4f16432c-6345-4349-a26b-d591fca01ee4)
+
 
 
 ## Architecture
